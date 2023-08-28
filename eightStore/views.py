@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category, Game, Order, Customer, Toy
+from .models import Category, Game, Order, Customer, Toy, ToyCategory
 from .forms import CustomerForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -22,8 +22,8 @@ def details(request, id):
 
 def toys(request):
     toys = Toy.objects.all
-    all_categories = Category.objects.all()
-    return render(request, "toys.html", {'toys': toys, 'all_categories': all_categories})
+    all_categories = ToyCategory.objects.all
+    return render(request, "toys.html", {'allgames': toys, 'all_categories': all_categories})
 
 def detailstoys(request, id):
     toy = Toy.objects.get(id = id)
@@ -95,8 +95,13 @@ def administrator(request):
 def categoryFilter(request, categoryId):
     categories = Category.objects.all()
     selected_category = Category.objects.get(id = categoryId)
-
     gamesByCat = Game.objects.all().filter(category = selected_category)
-   
 
     return render(request, "categories.html", {'allgames': gamesByCat})
+
+def toyCategoryFilter(request, toyCategoryId):
+    toyCategories = ToyCategory.objects.all()
+    selected_category = ToyCategory.objects.get(id = toyCategoryId)
+    toysByCat = Toy.objects.all().filter(category = selected_category)
+
+    return render(request, "toys.html", {'allgames': toysByCat})

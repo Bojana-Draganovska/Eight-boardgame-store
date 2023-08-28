@@ -216,25 +216,18 @@
     <div class="wrapper">
       <header class="d-flex justify-content-between mt-5">
         {% load static %}
-        <img
-          class="logo"
-          id="logoicon"
-          src="{% static 'logo.svg' %}"
-          alt="logo"
-        />
+        <a href="/">
+          <img
+            class="logo"
+            id="logoicon"
+            src="{% static 'logo.svg' %}"
+            alt="logo"
+          />
+        </a>
         <input
           class="search-bar border-0"
           placeholder="Find what you’re looking for"
         />
-        {% if request.user.is_authenticated %}
-        <a href="profile/">
-          <button class="login border-0" id="login">Profile</button>
-        </a>
-        {% endif %} {% if not request.user.is_authenticated %}
-        <a href="login">
-          <button class="login border-0" id="login">Log in</button>
-        </a>
-        {% endif %}
       </header>
       <main class="d-flex flex-column">
         <div class="main-options d-flex justify-content-between mt-5">
@@ -251,7 +244,7 @@
           <form method="GET" class="category-form">
             <ul class="menu-options d-flex justify-content-around mb-0">
               {%for category in all_categories %}
-              <a href="/categoryFilter/{{category.id}}">
+              <a href="/toyCategoryFilter/{{category.id}}">
                 <li value={{category.name}}>{{category.name}}</li>
               </a>
              {% endfor %}
@@ -259,10 +252,10 @@
           </form>
         </div>
         <div class="board-games-ls">
-          {% for toy in toys %}
-          <a href="detailstoys/{{toy.id}}">
+          {% for toy in allgames %}
+          <a href="/detailstoys/{{toy.id}}">
             <div class="bg" id="bgDiv">
-              <img src="{{toy.image}}" id="bgame" />
+              <img src="/{{toy.image}}" id="bgame" />
             </div>
           </a>
           {% endfor %}

@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout', views.logoutUser, name="logoutUser"),
     path('administrator', views.administrator, name="administrator"),
     path('categoryFilter/<int:categoryId>', views.categoryFilter, name="categoryFilter"),
+    path('toyCategoryFilter/<int:toyCategoryId>', views.toyCategoryFilter, name="toyCategoryFilter"),
 ]
 

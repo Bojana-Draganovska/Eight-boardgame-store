@@ -57,7 +57,7 @@
         border-color: #068da9;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       }
-      .product-info { 
+      .product-info {
         margin-top: 50px;
       }
       .product-details {
@@ -70,12 +70,12 @@
         padding: 10px 30px;
         border-radius: 16px;
         border: none;
-        background-color: #E55807;
+        background-color: #e55807;
         color: white;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         font-size: 12px;
       }
-      .price { 
+      .price {
         font-weight: bolder;
       }
       .product {
@@ -88,31 +88,41 @@
     <div class="wrapper">
       <header class="d-flex justify-content-between mt-5">
         {% load static %}
-        <img class="logo" id="logoicon" src="{% static 'logo.svg' %}" alt="logo" />
-        <input class="search-bar border-0" placeholder="Find what you’re looking for" />
-        <button class="login border-0" id="login">Login</button>
+        <a href="/">
+          <img
+            class="logo"
+            id="logoicon"
+            src="{% static 'logo.svg' %}"
+            alt="logo"
+          />
+        </a>
+        <input
+          class="search-bar border-0"
+          placeholder="Find what you’re looking for"
+        />
       </header>
       <div class="product-info d-flex flex-column">
         <div class="product-short-info d-flex">
-        <div class="product-image">
-          {% load static %}
-          <img class="product" src="/{{toy.image}}" alt="product" />
-        </div>
-        <div class="product-details">
-          <h1 class="product-title">{{toy.name}}</h1>
-          <p class="short-description">{{toy.short_description}}</p>
-          <div class="specifications d-flex justify-content-flex-start">
-            <div class="age-required">{{toy.age}} +</div>
+          <div class="product-image">
+            {% load static %}
+            <img class="product" src="/{{toy.image}}" alt="product" />
           </div>
-          <div class="d-flex justify-content-between align-items-center align-content-center mt-4">
-          <div class="price">{{toy.price}} &euro;</div>
-          <button class="add" id="addbasket">Add to basket</button>
+          <div class="product-details">
+            <h1 class="product-title">{{toy.name}}</h1>
+            <p class="short-description">{{toy.short_description}}</p>
+            <div class="specifications d-flex justify-content-flex-start">
+              <div class="age-required">{{toy.age}} +</div>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center align-content-center mt-4"
+            >
+              <div class="price">{{toy.price}} &euro;</div>
+              <button class="add" id="addbasket">Add to basket</button>
+            </div>
+          </div>
         </div>
-        </div>
-      </div>
         <p class="description mt-5">{{toy.long_description}}</p>
       </div>
     </div>
-  
   </body>
 </html>

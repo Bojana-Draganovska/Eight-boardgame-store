@@ -231,15 +231,6 @@
           class="search-bar border-0"
           placeholder="Find what you’re looking for"
         />
-        {% if request.user.is_authenticated %}
-        <a href="profile/">
-          <button class="login border-0" id="login">Profile</button>
-        </a>
-        {% endif %} {% if not request.user.is_authenticated %}
-        <a href="login">
-          <button class="login border-0" id="login">Log in</button>
-        </a>
-        {% endif %}
       </header>
       <main class="d-flex flex-column">
         <div class="main-options d-flex justify-content-between mt-5">
@@ -261,9 +252,6 @@
              {% endfor %}
             </ul>
         </div>
-        {% for category in selected_category %}
-          <h1>{{game.name}}</h1>
-          {% endfor %}
         <div class="board-games-ls">
           {% for game in allgames %}
           <a href="/details/{{game.id}}">
