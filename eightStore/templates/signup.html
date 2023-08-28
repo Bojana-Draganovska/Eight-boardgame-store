@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Saira:wght@200&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>Eight - Your favourite board game store!</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-family: "Saira", sans-serif;
+      }
+      .wrapper {
+        width: 80%;
+        height: 100%;
+        margin: auto;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 50%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        font-size: 12px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      input::placeholder {
+        color: white;
+      }
+      .login {
+        font-size: 12px;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 10%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+
+      .required-info {
+        width: 40%;
+        margin: 0 auto 0 0;
+      }
+      .required-info label {
+        font-size: 15px;
+        color: #e55807;
+        font-weight: bolder;
+        margin-top: 10px;
+      }
+      .required-info input {
+        background-color: #068da9;
+        width: 100%;
+        border: none;
+        border-radius: 16px;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+      }
+      .required-info input::placeholder {
+        font-size: 12px;
+        color: white;
+      }
+      .signup-form {
+        border: none;
+        padding: 10px 10px;
+        border-radius: 16px;
+        background-color: #068da9;
+        color: white;
+        font-size: 15px;
+        width: 50%;
+        justify-content: center;
+        margin: auto;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .signup-options {
+        width: 40%;
+        justify-content: center;
+      }
+      .line-h2 {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #e55807;
+        line-height: 0.1em;
+        margin: 10px 0 20px;
+        font-size: 15px;
+      }
+
+      .line-h2 span {
+        background: #f8f8f8;
+        padding: 0 10px;
+        color: #068da9;
+      }
+      .login-platforms {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .login-platforms img {
+        width: 60px;
+        height: 60px;
+        margin-left: 5px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+      }
+      .login {
+        padding: 10px 20px;
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="d-flex justify-content-between mt-5">
+        {% load static %}
+        <a href="/">
+          <img
+            class="logo"
+            id="logoicon"
+            src="{% static 'logo.svg' %}"
+            alt="logo"
+          />
+        </a>
+        <input
+          class="search-bar border-0"
+          placeholder="Find what you’re looking for"
+        />
+        <a href="/login">
+          <button class="login border-0">Log in</button>
+        </a>
+      </header>
+      <div class="login-wrapper d-flex mt-5">
+        <div class="required-info d-flex flex-column">
+
+          <form method="POST" class="d-flex flex-column">
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input type="text" name="first_name" placeholder="Enter your name" />
+
+            <label for="surname">Surname</label>
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Enter your surname"
+            />
+
+            <label for="surname">Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+            />
+
+            <label for="email">Email</label>
+            <input type="text" name="email" placeholder="Enter your email" />
+
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password1"
+              placeholder="Enter your password"
+              autocomplete="on"
+            />
+            <label for="password">Confirm Password</label>
+            <input
+              type="password"
+              name="password2"
+              placeholder="Enter your password"
+              autocomplete="on"
+            />
+            <input class="signup-form mt-5 d-flex flex-wrap" value="Sign Up" name="submit" type="submit">
+            </input>
+          </form>
+        </div>
+        <div class="signup-options d-flex flex-column">
+          <div class="line">
+            <h2 class="line-h2">
+              <span class="line-span">Or log in with</span>
+            </h2>
+          </div>
+          <div class="login-platforms">
+            {% load static %}
+            <img src="{% static 'instagram.svg' %}" id="instagram" alt="instagram logo" />
+            <img src="{% static 'facebook.svg' %}" id="facebook" alt="facebook logo" />
+            <img src="{% static 'google.svg' %}" id="google" alt="google logo" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

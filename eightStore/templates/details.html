@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Saira:wght@200&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>Eight - Your favourite board game store!</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-family: "Saira", sans-serif;
+      }
+      .wrapper {
+        width: 80%;
+        height: 100%;
+        margin: auto;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 50%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        font-size: 12px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      input::placeholder {
+        color: white;
+      }
+      .login {
+        font-size: 12px;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 10%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .product-info {
+        margin-top: 50px;
+      }
+      .product-details {
+        margin-left: 50px;
+      }
+      .product-title {
+        font-weight: bolder;
+      }
+      .add {
+        padding: 10px 30px;
+        border-radius: 16px;
+        border: none;
+        background-color: #e55807;
+        color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        font-size: 12px;
+      }
+      .price {
+        font-weight: bolder;
+      }
+      .product {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="d-flex justify-content-between mt-5">
+        {% load static %}
+        <a href="/">
+          <img
+            class="logo"
+            id="logoicon"
+            src="{% static 'logo.svg' %}"
+            alt="logo"
+          />
+        </a>
+        <input
+          class="search-bar border-0"
+          placeholder="Find what you’re looking for"
+        />
+        <!-- {% if request.user.is_authenticated %}
+        <a href="profile/">
+          <button class="login border-0" id="login">Profile</button>
+        </a>
+        {% endif %} {% if not request.user.is_authenticated %}
+        <a href="login">
+          <button class="login border-0" id="login">Log in</button>
+        </a>
+        {% endif %} -->
+      </header>
+      <div class="product-info d-flex flex-column">
+        <div class="product-short-info d-flex">
+          <div class="product-image">
+            {% load static %}
+            <img class="product" src="/{{game.image}}" alt="product" />
+          </div>
+          <div class="product-details">
+            <h1 class="product-title">{{game.title}}</h1>
+            <p class="short-description">{{game.short_description}}</p>
+            <div class="specifications d-flex justify-content-around">
+              <div class="players">
+                {% load static %}
+                <img
+                  class="num-players"
+                  src="{% static 'players.svg' %}"
+                  alt="number of players"
+                />
+                <span>{{game.num_players}} minimum</span>
+              </div>
+              <div class="playing-time">
+                {% load static %}
+                <img
+                  class="playing-time"
+                  src="{% static 'time.svg' %}"
+                  alt="playing time"
+                />
+                <span>{{game.playing_time}}</span>
+              </div>
+              <div class="age-required">{{game.age}} +</div>
+              <div class="original-language">{{game.language}}</div>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center align-content-center mt-4"
+            >
+              <div class="price">{{game.price}} &euro;</div>
+              <button class="add" id="addbasket">Add to basket</button>
+            </div>
+          </div>
+        </div>
+        <p class="description mt-5">{{game.long_description}}</p>
+      </div>
+    </div>
+  </body>
+</html>

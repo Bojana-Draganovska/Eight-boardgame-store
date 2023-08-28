@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Saira:wght@200&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>Eight - Your favourite board game store!</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-family: "Saira", sans-serif;
+      }
+      .wrapper {
+        width: 80%;
+        height: 100%;
+        margin: auto;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 50%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        font-size: 12px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      input::placeholder {
+        color: white;
+      }
+      .login {
+        font-size: 12px;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 10%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .required-info-payment {
+        width: 45%;
+        margin: 0 auto 0 0;
+      }
+      .required-info-payment label {
+        font-size: 15px;
+        color: #e55807;
+        font-weight: bolder;
+      }
+      .required-info-payment input {
+        background-color: #068da9;
+        width: 100%;
+        border: none;
+        border-radius: 16px;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .required-info-payment input::placeholder {
+        font-size: 12px;
+        color: white;
+      }
+      .payment-options {
+        width: 45%;
+        margin: 0 0 0 auto;
+        background-color: #ecf8f9;
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .title-order {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+      }
+      .order-column h1 {
+        font-size: 20px;
+        font-weight: bolder;
+      }
+      .order-info {
+        height: 100%;
+      }
+      .price-quantity {
+        display: flex;
+      }
+      .price-quantity h2 {
+        font-size: 12px;
+        font-weight: bolder;
+        margin-left: 10px;
+      }
+      .product-order-info {
+        height: 100%;
+      }
+      .paynow {
+        margin-top: 30px !important;
+        width: 50%;
+        margin: 0 auto;
+        border: none;
+        background-color: #e55807;
+        color: white;
+        font-weight: bolder !important;
+        border-radius: 16px;
+        padding: 10px 20px !important;
+        font-size: 15px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .product-ordered {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .price-quantity span {
+        margin-left: 40px;
+        color: black !important;
+      }
+      .product-ordered img {
+        width: 70px;
+        height: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="d-flex justify-content-between mt-5">
+        {% load static %}
+        <img
+          class="logo"
+          id="logoicon"
+          src="{% static 'logo.svg' %}"
+          alt="logo"
+        />
+        <input
+          class="search-bar border-0"
+          placeholder="Find what you’re looking for"
+        />
+        <button class="login border-0" id="login">Login</button>
+      </header>
+      <div class="d-flex mt-5">
+        <div class="required-info-payment d-flex flex-column">
+          <form action="GET" class="d-flex flex-column">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="Enter your name" />
+            <label for="surname">Surname</label>
+            <input
+              type="text"
+              name="surname"
+              placeholder="Enter your surname"
+            />
+            <label for="country">Country</label>
+            <input type="text" name="country" placeholder="Country" />
+            <label for="city">City </label>
+            <input type="text" name="city" placeholder="City" />
+            <label for="postcode">Post Code </label>
+            <input type="text" name="postcode" placeholder="Post Code" />
+            <label for="address">Address</label>
+            <input type="text" name="address" placeholder="Address" />
+          </form>
+        </div>
+        <div class="payment-options d-flex flex-column">
+          <div class="order-info d-flex flex-column">
+            <h3 class="title-order">Your Order</h3>
+            <div class="product-order-info d-flex flex-column">
+              <div class="order-column d-flex justify-content-between">
+                <h1>Items</h1>
+                <div class="price-quantity h2 d-flex">
+                  <h2>Price</h2>
+                  <h2>Quantity</h2>
+                </div>
+              </div>
+              <div class="product-ordered">
+                {% load static %}
+                <img src="{% static 'betrayalhouse.svg' %}" />
+                <span>Betrayal at the House on the Hill</span>
+                <div class="price-quantity">
+                  <span class="product-order-price">109 &euro;</span>
+                  <span class="product-order-quantity">1</span>
+                </div>
+              </div>
+              <div class="">
+              <button class="paynow">ORDER NOW</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

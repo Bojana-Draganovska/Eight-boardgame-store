@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Saira:wght@200&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <title>Eight - Your favourite board game store!</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f8f8f8;
+        font-family: "Saira", sans-serif;
+      }
+      .wrapper {
+        width: 80%;
+        height: 100%;
+        margin: auto;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .search-bar {
+        display: flex;
+        align-items: center;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 50%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        font-size: 12px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      input::placeholder {
+        color: white;
+      }
+      .login {
+        font-size: 12px;
+        background-color: #068da9;
+        color: #ecf8f9;
+        width: 10%;
+        padding: 10px;
+        border-radius: 16px;
+        border-color: #068da9;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .main-btn {
+        width: 40%;
+        height: 86px;
+        border-radius: 16px;
+        color: #e55807;
+        font-weight: bolder;
+        font-size: 25px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        background-image: url("static/bgbg.jpg");
+        background-repeat: no-repeat;
+        background-position-x: 40%;
+        background-position-y: 80%;
+        background-size: 200%;
+      }
+      .menu {
+        width: 80%;
+        margin: auto;
+      }
+      .category-form {
+        display: flex;
+      }
+      ul {
+        padding: 0 !important;
+      }
+      .menu-options {
+        width: 100%;
+        /* padding: 0; */
+        list-style: none;
+        border-radius: 16px;
+        background-color: #068da9;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .menu-options li {
+        cursor: pointer;
+        display: flex;
+        width: 230px;
+        padding: 20px 50px;
+        align-items: center;
+        justify-content: center;
+        /* margin-left: 10px; */
+        /* margin-right: 10px; */
+        border-radius: 16px;
+        background-color: #ecf8f9;
+        color: #e55807;
+        font-weight: bolder;
+        background-image: url("static/bgbg.jpg");
+        background-repeat: no-repeat;
+        background-position-x: 40%;
+        background-position-y: 80%;
+        background-size: 220%;
+      }
+
+      .menu-options li:first-child {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .menu-options li:last-child {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .latest-games {
+        width: 100%;
+      }
+      .latest-primary {
+        width: 40%;
+        padding: 10px;
+        background-color: #ffff;
+        border-radius: 16px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      .latest-secondary {
+        width: 50%;
+        padding: 10px;
+      }
+      .latest-secondary-bg {
+        cursor: pointer;
+        padding: 10px;
+        width: 50%;
+        border-radius: 16px;
+        background-color: #ffff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        align-items: center;
+      }
+      #helper {
+        margin: 0 10px 0 0;
+      }
+      .title {
+        font-size: 20px;
+        color: #e55807;
+        padding: 10px;
+        font-weight: bolder;
+      }
+      .more-details {
+        background-color: #068da9;
+        border-radius: 16px;
+        border: none;
+        padding: 20px 20px;
+        margin-bottom: 10px;
+        color: #ffff;
+        cursor: pointer;
+        font-size: 15px;
+        height: 10%;
+        align-items: center;
+        display: flex;
+        float: bottom;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      #betrayal-bg {
+        margin-left: 10px;
+      }
+      #codenames-bg {
+        width: 140px;
+        height: 140px;
+      }
+      #junglespeed-bg {
+        width: 140px;
+        height: 140px;
+      }
+      .board-games-ls {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: auto;
+      }
+      .bg {
+        background-color: white;
+        border-radius: 16px;
+        margin-top: 20px;
+        width: 100%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      #bgame {
+        width: 100px;
+        height: 100px;
+        margin: 40px;
+      }
+      a {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+      }
+      .main-btn-a, .login {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+      }
+      .login {
+        padding: 10px 20px;
+      }
+      .main-options {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="d-flex justify-content-between mt-5">
+        {% load static %}
+        <img
+          class="logo"
+          id="logoicon"
+          src="{% static 'logo.svg' %}"
+          alt="logo"
+        />
+        <input
+          class="search-bar border-0"
+          placeholder="Find what you’re looking for"
+        />
+        {% if request.user.is_authenticated %}
+        <a href="profile/">
+          <button class="login border-0" id="login">Profile</button>
+        </a>
+        {% endif %} {% if not request.user.is_authenticated %}
+        <a href="login">
+          <button class="login border-0" id="login">Log in</button>
+        </a>
+        {% endif %}
+      </header>
+      <main class="d-flex flex-column">
+        <div class="main-options d-flex justify-content-between mt-5">
+          <a class="main-btn-a" href="/categories">
+            <button class="main-btn border-0" id="board-game-btn">
+              Board Games
+            </button>
+          </a>
+          <a class="main-btn-a" href="/toys">
+            <button class="main-btn border-0" id="toy-btn">Toys</button>
+          </a>
+        </div>
+        <div class="menu d-flex mt-4 justify-content-center">
+          <form method="GET" class="category-form">
+            <ul class="menu-options d-flex justify-content-around mb-0">
+              {%for category in all_categories %}
+              <a href="/categoryFilter/{{category.id}}">
+                <li value={{category.name}}>{{category.name}}</li>
+              </a>
+             {% endfor %}
+            </ul>
+          </form>
+        </div>
+        <div class="board-games-ls">
+          {% for toy in toys %}
+          <a href="detailstoys/{{toy.id}}">
+            <div class="bg" id="bgDiv">
+              <img src="{{toy.image}}" id="bgame" />
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
