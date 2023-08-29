@@ -100,6 +100,10 @@
           class="search-bar border-0"
           placeholder="Find what you’re looking for"
         />
+        {% if request.user.is_authenticated %}
+        {% load static %}
+        <img src="{% static 'basket.svg' %}" alt="basket" />
+        {% endif %}
       </header>
       <div class="product-info d-flex flex-column">
         <div class="product-short-info d-flex">
@@ -108,7 +112,7 @@
             <img class="product" src="/{{toy.image}}" alt="product" />
           </div>
           <div class="product-details">
-            <h1 class="product-title">{{toy.name}}</h1>
+            <h1 class="product-title">{{toy.title}}</h1>
             <p class="short-description">{{toy.short_description}}</p>
             <div class="specifications d-flex justify-content-flex-start">
               <div class="age-required">{{toy.age}} +</div>
@@ -117,7 +121,9 @@
               class="d-flex justify-content-between align-items-center align-content-center mt-4"
             >
               <div class="price">{{toy.price}} &euro;</div>
-              <button class="add" id="addbasket">Add to basket</button>
+              <a href="/basketToy/{{toy.id}}">
+                <button class="add" id="addbasket">Add to basket</button>
+              </a>
             </div>
           </div>
         </div>

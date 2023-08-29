@@ -100,6 +100,10 @@
           class="search-bar border-0"
           placeholder="Find what you’re looking for"
         />
+        {% if request.user.is_authenticated %}
+        {% load static %}
+        <img src="{% static 'basket.svg' %}" alt="basket" />
+        {% endif %}
       </header>
       <div class="product-info d-flex flex-column">
         <div class="product-short-info d-flex">
@@ -136,7 +140,9 @@
               class="d-flex justify-content-between align-items-center align-content-center mt-4"
             >
               <div class="price">{{game.price}} &euro;</div>
+              <a href="/basket/{{game.id}}">
               <button class="add" id="addbasket">Add to basket</button>
+            </a>
             </div>
           </div>
         </div>

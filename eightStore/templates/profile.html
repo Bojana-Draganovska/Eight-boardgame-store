@@ -141,6 +141,23 @@
       </header>
       <div class="login-wrapper d-flex mt-5">
         <div class="required-info d-flex flex-column">
+          {% if user.is_superuser %}
+          <a href="/newgame">
+            <div class="logout mt-5 d-flex flex-wrap" type="submit">
+              Add new Game
+            </div>
+          {% endif %}
+          {% if user.is_superuser %}
+          <a href="/newtoy">
+            <div class="logout mt-5 d-flex flex-wrap" type="submit">
+              Add new Toy
+            </div>
+          {% endif %}
+          <a href="/basket">
+            <div class="logout mt-5 d-flex flex-wrap" type="submit">
+              Basket
+            </div>
+          </a>
           <a href="/logout">
             <div class="logout mt-5 d-flex flex-wrap" type="submit">
               Log Out

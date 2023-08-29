@@ -57,33 +57,34 @@
         border-color: #068da9;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       }
-      .required-info-payment {
-        width: 45%;
-        margin: 0 auto 0 0;
+      .product-info {
+        margin-top: 50px;
       }
-      .required-info-payment label {
-        font-size: 15px;
-        color: #e55807;
+      .product-details {
+        margin-left: 50px;
+      }
+      .product-title {
         font-weight: bolder;
       }
-      .required-info-payment input {
-        background-color: #068da9;
-        width: 100%;
-        border: none;
+      .add {
+        padding: 10px 30px;
         border-radius: 16px;
+        border: none;
+        background-color: #e55807;
         color: white;
-        padding: 10px 20px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .required-info-payment input::placeholder {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         font-size: 12px;
-        color: white;
+      }
+      .price {
+        font-weight: bolder;
+      }
+      .product {
+        width: 200px;
+        height: 200px;
       }
       .payment-options {
-        width: 45%;
+        width: 100%;
         margin: 0 0 0 auto;
-        border: 2px solid #e55807;
         border-radius: 16px;
         padding: 20px;
       }
@@ -102,6 +103,9 @@
       .price-quantity {
         display: flex;
       }
+      .price-quantity span {
+        margin: 0 10px;
+      }
       .price-quantity h2 {
         font-size: 12px;
         font-weight: bolder;
@@ -112,10 +116,9 @@
       }
       .paynow {
         margin-top: 30px !important;
-        width: 50%;
         margin: 0 auto;
         border: none;
-        background-color: #e55807;
+        background-color: #068da9;
         color: white;
         font-weight: bolder !important;
         border-radius: 16px;
@@ -123,18 +126,18 @@
         font-size: 15px;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       }
-      .product-ordered {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .price-quantity span {
-        margin-left: 40px;
-        color: black !important;
-      }
       .product-ordered img {
-        width: 70px;
-        height: 70px;
+        width: 100px;
+        height: 100px;
+      }
+      a {
+        display: flex;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+      }
+      .product-ordered {
+        align-items: center;
       }
     </style>
   </head>
@@ -158,53 +161,33 @@
         <img src="{% static 'basket.svg' %}" alt="basket" />
         {% endif %}
       </header>
-      <div class="d-flex mt-5">
-        <div class="required-info-payment d-flex flex-column">
-          <form action="POST" class="d-flex flex-column">
-            <label for="name">Name</label>
-            <input type="text" name="name" placeholder="Enter your name" />
-            <label for="surname">Surname</label>
-            <input
-              type="text"
-              name="surname"
-              placeholder="Enter your surname"
-            />
-            <label for="country">Country</label>
-            <input type="text" name="country" placeholder="Country" />
-            <label for="city">City </label>
-            <input type="text" name="city" placeholder="City" />
-            <label for="postcode">Post Code </label>
-            <input type="text" name="postcode" placeholder="Post Code" />
-            <label for="address">Address</label>
-            <input type="text" name="address" placeholder="Address" />
-
-            <input type="submit" name="sumbit" value="Submit" />
-          </form>
-        </div>
-        <div class="payment-options d-flex flex-column">
-          <div class="order-info d-flex flex-column">
-            <h3 class="title-order">Your Order</h3>
-            <div class="product-order-info d-flex flex-column">
-              <div class="order-column d-flex justify-content-between">
-                <h1>Items</h1>
-                <div class="price-quantity h2 d-flex">
-                  <h2>Price</h2>
-                  <h2>Quantity</h2>
-                </div>
-              </div>
-              <div class="product-ordered">
-                {% load static %}
-                <img src="/{{item.image}}" />
-                <span>{{item.name}}</span>
-                <div class="price-quantity">
-                  <span class="product-order-price">{{item.price}} &euro;</span>
-                  <span class="product-order-quantity">1</span>
-                </div>
+      <h1 class="my-basket mt-5">My Basket</h1>
+      <div class="payment-options d-flex flex-column">
+        <div class="order-info d-flex flex-column">
+          <h3 class="title-order">Your Order</h3>
+          <div class="product-order-info d-flex flex-column">
+            <div class="order-column d-flex justify-content-between">
+              <h1>Items</h1>
+              <div class="price-quantity h2 d-flex">
+                <h2>Price</h2>
+                <h2>Quantity</h2>
               </div>
             </div>
-            <div class="d-flex justify-content-center">
-              <button class="paynow">ORDER NOW</button>
+            <div class="product-ordered d-flex justify-content-between">
+              {% load static %}
+              <img src="/{{order.image}}" />
+              <span>{{order.title}}</span>
+              <div class="price-quantity">
+                <span class="product-order-price">{{order.price}} &euro;</span>
+                <span class="product-order-quantity">1</span>
+              </div>
             </div>
+            <hr />
+          </div>
+          <div class="d-flex justify-content-center">
+            <a href="/payment/{{order.type}}/{{order.id}}">
+              <button class="paynow">CHECKOUT</button>
+            </a>
           </div>
         </div>
       </div>
