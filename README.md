@@ -19,5 +19,5 @@
 username: user  </br>
 password: admin  </br>
 
-<h2>Апликацијата можете да ја користите на http://127.0.0.1:8000/ или хостирана верзија: https://draganovskabojana.pythonanywhere.com/</h2>
+<h2>Апликацијата можете да ја користите локално http://127.0.0.1:8000/ или на сервер: https://draganovskabojana.pythonanywhere.com/</h2>
 
