@@ -199,7 +199,8 @@
         margin: 0;
         padding: 0;
       }
-      .main-btn-a, .login {
+      .main-btn-a,
+      .login {
         width: 100% !important;
         display: flex;
         justify-content: center;
@@ -245,19 +246,25 @@
             <ul class="menu-options d-flex justify-content-around mb-0">
               {%for category in all_categories %}
               <a href="/toyCategoryFilter/{{category.id}}">
-                <li value={{category.name}}>{{category.name}}</li>
+                <li value="{{category.name}}">{{category.name}}</li>
               </a>
-             {% endfor %}
+              {% endfor %}
             </ul>
           </form>
         </div>
         <div class="board-games-ls">
           {% for toy in allgames %}
-          <a href="/detailstoys/{{toy.id}}">
-            <div class="bg" id="bgDiv">
+          <div class="bg d-flex justify-content-flex-start" id="bgDiv">
+            <a href="/detailstoys/{{toy.id}}">
               <img src="/{{toy.image}}" id="bgame" />
-            </div>
-          </a>
+            </a>
+            <a href="/admin/eightStore/toy/{{toy.id}}/change/">
+              {% if user.is_superuser %} {% load static %}
+              <img src="{% static 'edit.svg' %}" alt="edit" id="edit" />
+              {% endif %}
+            </a>
+          </div>
+
           {% endfor %}
         </div>
       </main>

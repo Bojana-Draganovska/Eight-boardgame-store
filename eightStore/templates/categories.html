@@ -179,7 +179,7 @@
         display: grid;
         grid-template-rows: auto auto;
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        gap: 5px;
         margin: auto;
       }
       .bg {
@@ -244,21 +244,28 @@
           </a>
         </div>
         <div class="menu d-flex mt-4 justify-content-center">
-            <ul class="menu-options d-flex justify-content-around mb-0">
-              {%for category in all_categories %}
-              <a href="/categoryFilter/{{category.id}}">
-                <li value={{category.name}}>{{category.name}}</li>
-              </a>
-             {% endfor %}
-            </ul>
+          <ul class="menu-options d-flex justify-content-around mb-0">
+            {%for category in all_categories %}
+            <a href="/categoryFilter/{{category.id}}">
+              <li value="{{category.name}}">{{category.name}}</li>
+            </a>
+            {% endfor %}
+          </ul>
         </div>
         <div class="board-games-ls">
           {% for game in allgames %}
-          <a href="/details/{{game.id}}">
-            <div class="bg" id="bgDiv">
+
+          <div class="bg d-flex justify-content-flex-start" id="bgDiv">
+            <a href="/details/{{game.id}}">
               <img src="/{{game.image}}" id="bgame" />
-            </div>
-          </a>
+            </a>
+            <a href="/admin/eightStore/game/{{game.id}}/change/">
+              {% if user.is_superuser %} {% load static %}
+              <img src="{% static 'edit.svg' %}" alt="edit" id="edit" />
+              {% endif %}
+            </a>
+          </div>
+
           {% endfor %}
         </div>
       </main>

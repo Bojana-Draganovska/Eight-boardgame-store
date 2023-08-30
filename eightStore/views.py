@@ -138,7 +138,6 @@ def add_game_item(request):
     if request.method == "POST":
 
         form=GameItemForm(request.POST)
-        # file=request.FILES['file']
 
         if form.is_valid():
             
