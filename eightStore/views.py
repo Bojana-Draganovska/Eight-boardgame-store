@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Category, Game, Order, Customer, Toy, ToyCategory
-from .forms import CustomerForm, OrderForm
+from .models import Category, Game, Customer, Toy, ToyCategory
+from .forms import CustomerForm, GameItemForm, ToyItemForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -105,6 +105,9 @@ def toyCategoryFilter(request, toyCategoryId):
 def newgame(request):
     return render(request, "newgame.html")
 
+def newtoy(request):
+    return render(request, "newtoy.html")
+
 def basket(request, id):
     game = Game.objects.get(id = id)
     return render(request, "basket.html", {'order': game })
@@ -123,31 +126,54 @@ def payment(request, item_type, id):
     return render(request, 'payment.html', {'item': item})
 
 
-def order_success(request):
-    return render(request, "order_success.html")
+def orderSuccess(request):
+   return render(request, 'orderSuccess.html')
 
-def createOrder(request):
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
+def add_game_item(request):
+
+    form=GameItemForm()
+
+
+    if request.method == "POST":
+
+        form=GameItemForm(request.POST)
+        # file=request.FILES['file']
 
         if form.is_valid():
-            user = request.user
-            item_type = form.cleaned_data['item_type']
-            item_id = form.cleaned_data['item_id']
-
-            if item_type == 'game':
-                item = Game.objects.get(id=item_id)
-            else:
-                item = Toy.objects.get(id=item_id)
-
-            order = Order(user=user, item=item)
-            order.save()
-            return redirect('order_success')  # Redirect to a success page
-
+            
+            newGame = form.save()  
+            return redirect('/')  
+        
     else:
-        form = OrderForm()
+        
+        categories = Category.objects.all
+        form = GameItemForm()
+        return render(request, 'newgame.html', {'categories': categories} )
+    
 
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'home.html')
 
+def add_toy_item(request):
 
+    form=ToyItemForm()
+
+    if request.method == "POST":
+
+        form=ToyItemForm(request.POST)
+
+        if form.is_valid():
+            
+            newToy = form.save()  
+            return redirect('/')  
+        
+    else:
+        
+        categories = Category.objects.all
+        form = ToyItemForm()
+        return render(request, 'newtoy.html', {'categories': categories} )
+    
+
+    return render(request, 'home.html')
+
+   

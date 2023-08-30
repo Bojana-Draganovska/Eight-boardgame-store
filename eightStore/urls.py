@@ -15,10 +15,13 @@ urlpatterns = [
     path('categoryFilter/<int:categoryId>', views.categoryFilter, name="categoryFilter"),
     path('toyCategoryFilter/<int:toyCategoryId>', views.toyCategoryFilter, name="toyCategoryFilter"),
     path('newgame', views.newgame, name="newgame"),
+    path('newtoy', views.newtoy, name="newtoy"),
     path('basket/<int:id>', views.basket, name="basket"),
     path('basketToy/<int:id>', views.basketToy, name="basketToy"),
     path('payment/<str:item_type>/<int:id>', views.payment, name='payment'),
-    path('order_success', views.order_success, name="order_success"),
+    path('orderSuccess', views.orderSuccess, name="orderSuccess"),
+    path('add_game_item', views.add_game_item, name='add_game_item'),
+    path('add_toy_item', views.add_toy_item, name='add_toy_item'),
 ]
 
 

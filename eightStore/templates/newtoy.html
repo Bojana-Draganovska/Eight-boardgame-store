@@ -172,9 +172,9 @@
       </header>
       <div class="login-wrapper mt-5">
         <div class="required-info d-flex">
-          <form method="POST" action="{% url 'add_game_item' %}" class="d-flex flex-column">
+          <form method="POST" action="{% url 'add_toy_item' %}" class="d-flex flex-column">
             {% csrf_token %}
-            <label for="title">Board Game Title</label>
+            <label for="title">Toy Title</label>
             <input type="text" name="title" />
 
             <label for="short_description">Short Description</label>
@@ -186,17 +186,8 @@
             <label for="price">Price</label>
             <input type="text" name="price" />
 
-            <label for="playing_time">Playing Time</label>
-            <input type="text" name="playing_time" autocomplete="on" />
-
-            <label for="num_players">Number of players</label>
-            <input type="text" name="num_players" autocomplete="on" />
-
             <label for="age">Required Age</label>
             <input type="text" name="age" />
-
-            <label for="language">Language</label>
-            <input type="text" name="language" />
 
             <label for="image"
               >Board Game Image
@@ -206,7 +197,6 @@
                 accept="image/png, image/gif, image/jpeg"
               />
             </label>
-
             <label for="category">Category: 1, 2, 3 or 4</label>
             <input type="text" name="category" />
             <label for="type">Type: game or toy</label>
